@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Birth Prep</title>
+<meta name="description" content="Week-by-week training and birth prep tracker." />
+<meta name="theme-color" content="#2f6f62" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand">
+      <span class="brand-name">Birth Prep</span>
+      <span class="week-chip" id="weekChip">—</span>
+    </div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Zm7.4-2.2a7.6 7.6 0 0 0 0-2.6l2-1.5-2-3.4-2.3 1a7.7 7.7 0 0 0-2.3-1.3L14.4 3H9.6l-.4 2.5a7.7 7.7 0 0 0-2.3 1.3l-2.3-1-2 3.4 2 1.5a7.6 7.6 0 0 0 0 2.6l-2 1.5 2 3.4 2.3-1a7.7 7.7 0 0 0 2.3 1.3l.4 2.5h4.8l.4-2.5a7.7 7.7 0 0 0 2.3-1.3l2.3 1 2-3.4Z"/></svg>
+    </button>
+  </div>
+  <div class="settings" id="settings" hidden>
+    <div class="wrap settings-in">
+      <label for="dueDate">Due date</label>
+      <input type="date" id="dueDate" />
+      <p class="muted" id="dueEcho"></p>
+      <button class="link-btn" id="resetWeek" type="button">Clear this week's ticks</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <!-- ───────────── THIS WEEK ───────────── -->
+  <section class="view" id="view-week">
+    <p class="lede" id="weekLede"></p>
+
+    <div class="focus" id="focusCard" hidden>
+      <span class="focus-label">Coming up</span>
+      <p id="focusText"></p>
+    </div>
+
+    <h2 class="sec-h">This week</h2>
+    <p class="muted small">Tap a card each time she does it. Resets Monday.</p>
+    <ul class="habits" id="habits"></ul>
+
+    <div class="done-note" id="doneNote" hidden>Everything hit for this week.</div>
+
+    <h2 class="sec-h">If she only does two things</h2>
+    <ol class="priority">
+      <li><b>The aerobic minutes.</b> Shorter first stage, lower caesarean rate, lower risk of gestational diabetes and preeclampsia.</li>
+      <li><b>Perineal massage from 34 weeks.</b> The one antenatal practice with real birth-outcome evidence.</li>
+    </ol>
+    <p class="muted small">Everything else is worth doing but won't make or break anything.</p>
+  </section>
+
+  <!-- ───────────── PLAN ───────────── -->
+  <section class="view" id="view-plan" hidden>
+    <p class="lede">Everything, folded up. Open what she needs.</p>
+    <div id="plan"></div>
+  </section>
+
+  <!-- ───────────── TIMELINE ───────────── -->
+  <section class="view" id="view-timeline" hidden>
+    <p class="lede">What starts when, from here to birth.</p>
+    <div class="chart-scroll"><div id="chart"></div></div>
+    <h2 class="sec-h">Milestones</h2>
+    <ul class="miles" id="miles"></ul>
+  </section>
+
+</main>
+
+<nav class="tabs" id="tabs">
+  <div class="wrap tabs-in">
+    <button class="tab is-on" data-view="week" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4Z"/></svg>
+      <span>This week</span>
+    </button>
+    <button class="tab" data-view="plan" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 5h16v2H4Zm0 6h16v2H4Zm0 6h10v2H4Z"/></svg>
+      <span>Plan</span>
+    </button>
+    <button class="tab" data-view="timeline" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h12v3H3Zm4 5.5h14v3H7ZM3 16h9v3H3Z"/></svg>
+      <span>Timeline</span>
+    </button>
+  </div>
+</nav>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

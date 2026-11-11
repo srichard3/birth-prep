@@ -16,7 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" />
-<link rel="stylesheet" href="style.css" />
+<!-- ?v= is bumped on each deploy; without it a browser can mix a cached
+     stylesheet with a fresh script and render the page wrong. -->
+<link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
@@ -100,8 +102,8 @@
   </div>
 </nav>
 
-<script src="icons.js"></script>
-<script src="content.js"></script>
-<script src="app.js"></script>
+<script src="icons.js?v=2"></script>
+<script src="content.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

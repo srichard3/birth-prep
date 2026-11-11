@@ -56,6 +56,10 @@ Then open <http://localhost:4178>.
 Pushed to GitHub Pages from the `main` branch. Any push updates the live site within a
 minute or so.
 
+**Bump `?v=` in `index.html` whenever you change a CSS or JS file.** Pages serves assets
+with a ten-minute cache, so without it a returning browser can pair a cached stylesheet
+with a fresh script — which renders the page wrong rather than merely stale.
+
 ## A note on the content
 
 The guidance here is summarised from Cochrane reviews, ACOG Committee Opinion 804, and

@@ -33,7 +33,15 @@ All content lives in `content.js`:
 | `TRACKS` | The bars and markers on the timeline |
 | `SECTIONS` | Reference panels. Body text takes a small markdown subset: `**bold**`, `*italic*`, `### heads`, `> quotes`, `-` bullets, `1.` lists, and `\| pipe \| tables \|` |
 
-`app.js` holds the logic and never needs editing to change the plan.
+`app.js` holds the logic and never needs editing to change the plan. `icons.js` holds the
+stroke-icon set; `HABITS`, `MILESTONES` and `SECTIONS` each name one by key.
+
+## On a phone
+
+It installs to the home screen — `manifest.webmanifest` plus an apple-touch-icon — and runs
+standalone with safe-area padding top and bottom. Tap targets are 42px or larger, hover
+styles are behind `@media (hover: hover)` so they don't stick after a tap, and
+`touch-action: manipulation` drops the double-tap zoom delay.
 
 ## Running locally
 

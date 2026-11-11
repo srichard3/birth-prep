@@ -210,10 +210,10 @@
               '<span class="ring-n">' + c + '<span class="ring-t">/' + h.target + '</span></span>' +
             '</span>' +
             '<span class="habit-txt">' +
-              '<span class="habit-name">' + esc(h.name) + '</span>' +
+              '<span class="habit-name">' + icon(h.icon) + esc(h.name) + '</span>' +
               '<span class="habit-note">' + esc(h.note) + '</span>' +
             '</span>' +
-            '<span class="habit-tick" aria-hidden="true">' + (done ? '✓' : '+') + '</span>' +
+            '<span class="habit-tick">' + icon(done ? 'check' : 'plus') + '</span>' +
           '</button>' +
         '</li>';
     }).join('');
@@ -232,6 +232,7 @@
       return '' +
         '<details class="panel" id="p-' + s.id + '">' +
           '<summary>' +
+            '<span class="panel-i">' + icon(s.icon) + '</span>' +
             '<span class="panel-t">' + esc(s.title) + '</span>' +
             '<span class="panel-s">' + esc(s.teaser) + '</span>' +
             '<span class="chev" aria-hidden="true"></span>' +
@@ -319,7 +320,7 @@
       return '<li class="mile' + state + '">' +
         '<b><span class="mile-d">' + fmtDate(weekDate(m.week)) + '</span>' +
         '<span class="mile-w">Week ' + m.week + '</span></b>' +
-        '<span>' + inline(m.text) + '</span></li>';
+        '<span class="mile-t">' + icon(m.icon) + '<span>' + inline(m.text) + '</span></span></li>';
     }).join('');
   }
 

@@ -7,6 +7,12 @@
 <meta name="description" content="Week-by-week training and birth prep tracker." />
 <meta name="theme-color" content="#2f6f62" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="icon-180.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Birth Prep" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" />
@@ -21,7 +27,7 @@
       <span class="week-chip" id="weekChip">—</span>
     </div>
     <button class="icon-btn" id="settingsBtn" aria-label="Settings" aria-expanded="false">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Zm7.4-2.2a7.6 7.6 0 0 0 0-2.6l2-1.5-2-3.4-2.3 1a7.7 7.7 0 0 0-2.3-1.3L14.4 3H9.6l-.4 2.5a7.7 7.7 0 0 0-2.3 1.3l-2.3-1-2 3.4 2 1.5a7.6 7.6 0 0 0 0 2.6l-2 1.5 2 3.4 2.3-1a7.7 7.7 0 0 0 2.3 1.3l.4 2.5h4.8l.4-2.5a7.7 7.7 0 0 0 2.3-1.3l2.3 1 2-3.4Z"/></svg>
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h8.5M18.5 7.5H20M4 16.5h3.5M13.5 16.5H20"/><circle cx="15.5" cy="7.5" r="2.6"/><circle cx="10.5" cy="16.5" r="2.6"/></svg>
     </button>
   </div>
   <div class="settings" id="settings" hidden>
@@ -30,6 +36,8 @@
       <input type="date" id="dueDate" />
       <p class="muted" id="dueEcho"></p>
       <button class="link-btn" id="resetWeek" type="button">Clear this week's ticks</button>
+      <p class="muted small">Ticks are saved on this device. They survive closing the browser
+        and reset every Monday.</p>
     </div>
   </div>
 </header>
@@ -41,7 +49,7 @@
     <p class="lede" id="weekLede"></p>
 
     <div class="focus" id="focusCard" hidden>
-      <span class="focus-label">Coming up</span>
+      <span class="focus-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8.5a6 6 0 0 0-12 0c0 6.5-2 7.5-2 7.5h16s-2-1-2-7.5"/><path d="M10.3 19.5a2.2 2.2 0 0 0 3.4 0"/></svg>Coming up</span>
       <p id="focusText"></p>
     </div>
 
@@ -49,7 +57,7 @@
     <p class="muted small">Tap a card each time she does it. Resets Monday.</p>
     <ul class="habits" id="habits"></ul>
 
-    <div class="done-note" id="doneNote" hidden>Everything hit for this week.</div>
+    <div class="done-note" id="doneNote" hidden><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 11.2V12a9 9 0 1 1-5.4-8.2"/><path d="m8.6 11.6 3 3 9-9"/></svg>Everything hit for this week.</div>
 
     <h2 class="sec-h">If she only does two things</h2>
     <ol class="priority">
@@ -78,20 +86,21 @@
 <nav class="tabs" id="tabs">
   <div class="wrap tabs-in">
     <button class="tab is-on" data-view="week" type="button">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 6.5h15v14h-15Z"/><path d="M4.5 10.5h15M8.5 3.8v4M15.5 3.8v4"/><path d="m9.2 15.3 2 2 3.6-3.6"/></svg>
       <span>This week</span>
     </button>
     <button class="tab" data-view="plan" type="button">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 5h16v2H4Zm0 6h16v2H4Zm0 6h10v2H4Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6.5h11M9 12h11M9 17.5h7"/><path d="M4.6 6.5h.01M4.6 12h.01M4.6 17.5h.01"/></svg>
       <span>Plan</span>
     </button>
     <button class="tab" data-view="timeline" type="button">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h12v3H3Zm4 5.5h14v3H7ZM3 16h9v3H3Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6.5h10M8.5 12h11M4 17.5h6.5"/></svg>
       <span>Timeline</span>
     </button>
   </div>
 </nav>
 
+<script src="icons.js"></script>
 <script src="content.js"></script>
 <script src="app.js"></script>
 </body>

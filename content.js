@@ -5,29 +5,29 @@ const DEFAULT_DUE = '2027-04-01';
 
 /* Trackable habits. `from`/`to` gate them by gestational week. */
 const HABITS = [
-  { id: 'aerobic',  name: 'Aerobic',        target: 5, from: 0,  to: 41,
+  { id: 'aerobic',  icon: 'activity', name: 'Aerobic',          target: 5, from: 0,  to: 41,
     note: '30 min at talk-test pace' },
-  { id: 'strength', name: 'Strength',       target: 3, from: 0,  to: 41,
+  { id: 'strength', icon: 'dumbbell', name: 'Strength',         target: 3, from: 0,  to: 41,
     note: '8–15 reps, 2–3 in reserve' },
-  { id: 'mobility', name: 'Mobility',       target: 5, from: 0,  to: 41,
+  { id: 'mobility', icon: 'expand',   name: 'Mobility',         target: 5, from: 0,  to: 41,
     note: '10–15 min' },
-  { id: 'pfBuild',  name: 'Pelvic floor',   target: 4, from: 0,  to: 32,
+  { id: 'pfBuild',  icon: 'shield',   name: 'Pelvic floor',     target: 4, from: 0,  to: 32,
     note: 'Strengthening sets' },
-  { id: 'pfRelax',  name: 'Pelvic floor',   target: 4, from: 32, to: 41,
+  { id: 'pfRelax',  icon: 'waves',    name: 'Pelvic floor',     target: 4, from: 32, to: 41,
     note: 'Release work — reverse Kegels, lengthening' },
-  { id: 'breath',   name: 'Breathing',      target: 7, from: 0,  to: 41,
+  { id: 'breath',   icon: 'wind',     name: 'Breathing',        target: 7, from: 0,  to: 41,
     note: '5–10 min diaphragmatic' },
-  { id: 'perineal', name: 'Perineal massage',target: 5, from: 34, to: 41,
+  { id: 'perineal', icon: 'droplet',  name: 'Perineal massage', target: 5, from: 34, to: 41,
     note: '3–5 min' }
 ];
 
 /* Things that change on a date rather than being done repeatedly. */
 const MILESTONES = [
-  { week: 20, text: 'No lying flat on her back for sets — switch those to an incline.' },
-  { week: 32, text: 'Shift the pelvic floor work from building to releasing.' },
-  { week: 34, text: 'Start perineal massage, 3–7×/week.' },
-  { week: 36, text: 'If the baby is breech, ask about ECV. Time-sensitive.' },
-  { week: 40, text: 'In labour: stay upright and keep moving. The strongest evidence of anything here.' }
+  { week: 20, icon: 'dumbbell', text: 'No lying flat on her back for sets — switch those to an incline.' },
+  { week: 32, icon: 'waves', text: 'Shift the pelvic floor work from building to releasing.' },
+  { week: 34, icon: 'droplet', text: 'Start perineal massage, 3–7×/week.' },
+  { week: 36, icon: 'person', text: 'If the baby is breech, ask about ECV. Time-sensitive.' },
+  { week: 40, icon: 'heart', text: 'In labour: stay upright and keep moving. The strongest evidence of anything here.' }
 ];
 
 /* Bars and markers for the timeline view. */
@@ -48,6 +48,7 @@ const TRACKS = [
 const SECTIONS = [
   {
     id: 'overview',
+    icon: 'star',
     title: 'Start here',
     teaser: 'The one thing that beats everything else',
     body: `
@@ -58,6 +59,7 @@ Nothing here needs to be perfect. The aerobic minutes and the perineal massage a
   },
   {
     id: 'aerobic',
+    icon: 'activity',
     title: 'Aerobic',
     teaser: '150 min per week',
     body: `
@@ -80,6 +82,7 @@ Concretely: breathing noticeably heavier, maybe lightly sweating, but sustainabl
   },
   {
     id: 'strength',
+    icon: 'dumbbell',
     title: 'Strength training',
     teaser: 'Retaining physical ability, and recovery',
     body: `
@@ -134,6 +137,7 @@ The situations where exercise genuinely isn't advised are **specific diagnoses**
   },
   {
     id: 'mobility',
+    icon: 'expand',
     title: 'Mobility',
     teaser: '10–15 min, most days',
     body: `
@@ -153,6 +157,7 @@ The situations where exercise genuinely isn't advised are **specific diagnoses**
   },
   {
     id: 'pf-build',
+    icon: 'shield',
     title: 'Pelvic floor — strengthen',
     teaser: 'The trial protocol',
     body: `
@@ -170,6 +175,7 @@ Taken from the regimens used in the Cochrane trials:
   },
   {
     id: 'pf-relax',
+    icon: 'waves',
     title: 'Pelvic floor — relax',
     teaser: 'The down-training half',
     body: `
@@ -185,6 +191,7 @@ Taken from the regimens used in the Cochrane trials:
   },
   {
     id: 'perineal',
+    icon: 'droplet',
     title: 'Perineal massage',
     teaser: 'From 34–35 weeks',
     body: `
@@ -208,6 +215,7 @@ If her partner does it, index fingers work better than thumbs for the angle. It 
   },
   {
     id: 'labour',
+    icon: 'heart',
     title: 'In labour',
     teaser: 'Where the evidence actually is',
     body: `
@@ -223,6 +231,7 @@ That last row matters: don't get precious about *which* movement. The trials mea
   },
   {
     id: 'positioning',
+    icon: 'person',
     title: 'Antenatal positioning',
     teaser: 'Breech vs posterior — they get confused',
     body: `

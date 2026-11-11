@@ -44,6 +44,24 @@
     };
   }
 
+  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  /* The calendar day a gestational week starts on. The due date is 40w0d,
+     so week w begins (280 - w*7) days before it. */
+  function weekDate(week) {
+    const d = parseISO(due);
+    return d ? new Date(d.getTime() - (280 - week * 7) * DAY) : null;
+  }
+
+  function fmtDate(d) {
+    return d ? MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() : '';
+  }
+
+  function fmtDateYear(d) {
+    return d ? fmtDate(d) + ', ' + d.getUTCFullYear() : '';
+  }
+
   /* Monday-based ISO week key, used to bucket the tick counts. */
   function weekKey(date) {
     const t = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -160,18 +178,21 @@
 
     const gw = g.weeks;
     chip.textContent = gw + 'w' + g.days + 'd';
-    lede.innerHTML = gw >= 40
+    const dueTxt = ' <span class="muted">Due ' + fmtDate(parseISO(due)) + '.</span>';
+    lede.innerHTML = (gw >= 40
       ? '<b>Week ' + gw + '.</b> Any day now.'
-      : '<b>Week ' + gw + '.</b> ' + g.daysLeft + ' days to go.';
+      : '<b>Week ' + gw + '.</b> ' + g.daysLeft + ' days to go.') + dueTxt;
 
     /* next milestone */
     const next = MILESTONES.find(m => m.week > gw);
     const card = document.getElementById('focusCard');
     if (next) {
       card.hidden = false;
+      const away = next.week - gw;
       document.getElementById('focusText').innerHTML =
-        '<b>Week ' + next.week + '</b> — ' + inline(next.text) +
-        ' <span class="muted">(' + (next.week - gw) + ' week' + (next.week - gw === 1 ? '' : 's') + ' away)</span>';
+        '<b>' + fmtDate(weekDate(next.week)) + '</b> <span class="muted">(week ' + next.week + ')</span> — ' +
+        inline(next.text) +
+        ' <span class="muted">' + away + ' week' + (away === 1 ? '' : 's') + ' away.</span>';
     } else {
       card.hidden = true;
     }
@@ -221,7 +242,8 @@
   }
 
   /* ---------- render: timeline ---------- */
-  function renderTimeline() {
+  function renderTimeline(step) {
+    step = typeof step === 'number' ? step : 4;
     const g = gestational(due);
     const gw = g ? g.weeks : 20;
     const lo = Math.min(20, gw);
@@ -231,7 +253,7 @@
     const pos = w => ((w - lo) / span) * 96;
 
     const ticks = [];
-    for (let w = Math.ceil(lo / 4) * 4; w <= hi; w += 4) ticks.push(w);
+    for (let w = hi; w >= lo; w -= step) ticks.unshift(w);
 
     const nowPct = Math.max(0, Math.min(100, pos(g ? g.exact : lo)));
 
@@ -242,9 +264,15 @@
         ? '<span class="bar" style="left:' + left + '%;width:' + width + '%"></span>'
         : '<span class="dot' + (t.accent ? ' is-accent' : '') + '" style="left:' + left + '%"></span>';
       const past = g && t.end < gw;
+      const when = t.kind === 'span'
+        ? fmtDate(weekDate(t.start)) + ' – ' + fmtDate(weekDate(t.end))
+        : fmtDate(weekDate(t.start));
       return '' +
         '<div class="trow' + (past ? ' is-past' : '') + '">' +
-          '<span class="tlabel">' + esc(t.label) + '</span>' +
+          '<span class="tlabel">' +
+            '<span class="tname">' + esc(t.label) + '</span>' +
+            '<span class="tdate">' + when + '</span>' +
+          '</span>' +
           '<span class="ttrack">' + bar + '</span>' +
         '</div>';
     }).join('');
@@ -252,9 +280,14 @@
     document.getElementById('chart').innerHTML = '' +
       '<div class="chart">' +
         '<div class="taxis">' +
-          '<span class="tlabel"></span>' +
+          '<span class="tlabel"><span class="tdate">week / date</span></span>' +
           '<span class="ttrack">' +
-            ticks.map(w => '<span class="tick" style="left:' + pos(w) + '%">' + w + '</span>').join('') +
+            ticks.map(w => {
+              const at = pos(w);
+              const edge = at < 6 ? ' is-first' : (at > 90 ? ' is-last' : '');
+              return '<span class="tick' + edge + '" style="left:' + at + '%">' +
+                '<b>' + w + '</b><i>' + fmtDate(weekDate(w)) + '</i></span>';
+            }).join('') +
           '</span>' +
         '</div>' +
         '<div class="tbody">' + rows + '</div>' +
@@ -268,9 +301,25 @@
       el.appendChild(m);
     });
 
+    /* The ticks carry dates now, so they need real room. Draw, measure, and
+       if any two touch, space them further apart and draw again. Rects are
+       all zero while the view is hidden, so skip the check then. */
+    if (step < 8) {
+      const r = Array.prototype.map.call(
+        document.querySelectorAll('#chart .tick'), e => e.getBoundingClientRect());
+      if (r.length > 1 && r[0].width > 0) {
+        for (let i = 1; i < r.length; i++) {
+          if (r[i].left - r[i - 1].right < 8) { renderTimeline(step + 2); return; }
+        }
+      }
+    }
+
     document.getElementById('miles').innerHTML = MILESTONES.map(m => {
       const state = !g ? '' : (m.week < gw ? ' is-past' : (m.week === gw ? ' is-now' : ''));
-      return '<li class="mile' + state + '"><b>Week ' + m.week + '</b><span>' + inline(m.text) + '</span></li>';
+      return '<li class="mile' + state + '">' +
+        '<b><span class="mile-d">' + fmtDate(weekDate(m.week)) + '</span>' +
+        '<span class="mile-w">Week ' + m.week + '</span></b>' +
+        '<span>' + inline(m.text) + '</span></li>';
     }).join('');
   }
 
@@ -293,6 +342,7 @@
     const view = btn.dataset.view;
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('is-on', t === btn));
     document.querySelectorAll('.view').forEach(v => { v.hidden = v.id !== 'view-' + view; });
+    if (view === 'timeline') renderTimeline();
     document.getElementById('main').scrollTo?.(0, 0);
     window.scrollTo(0, 0);
     try { location.hash = view; } catch (err) { /* ignore */ }
@@ -318,7 +368,8 @@
   function echoDue() {
     const g = gestational(due);
     document.getElementById('dueEcho').textContent = g
-      ? 'That puts her at ' + g.weeks + ' weeks ' + g.days + ' days today.'
+      ? 'That puts her at ' + g.weeks + ' weeks ' + g.days + ' days today — due ' +
+        fmtDateYear(parseISO(due)) + '.'
       : 'Pick a date.';
   }
 
@@ -336,6 +387,13 @@
     const btn = document.querySelector('.tab[data-view="' + name + '"]');
     if (btn) btn.click();
   }
+  /* tick spacing is measured, so redraw the chart after a resize */
+  let resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { renderTimeline(); }, 150);
+  });
+
   window.addEventListener('hashchange', routeFromHash);
   routeFromHash();
 

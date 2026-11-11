@@ -14,6 +14,11 @@ The due date drives everything. Gestational week is computed from it (40w0d at t
 date), and that week decides which habits show, which milestone is flagged as coming up,
 and where the "now" line sits on the timeline.
 
+Every gestational week in `content.js` is also shown as a calendar date, worked back from
+the due date, so nothing has to be stored twice. The timeline axis draws its ticks, then
+measures them and widens the spacing if the dates would collide — which is how it stays
+readable on a phone without scrolling sideways.
+
 Ticks are stored in `localStorage`, bucketed by ISO week, so they reset each Monday.
 Nothing is sent anywhere — there is no server.
 

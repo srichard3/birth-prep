@@ -291,28 +291,52 @@ main { padding-block: 1.4rem 2.5rem; display: block; }
 .chart { min-width: 20rem; font-size: .82rem; }
 .taxis, .trow {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
+  grid-template-columns: 8rem 1fr;
   align-items: center;
   gap: .6rem;
 }
-.taxis { margin-bottom: .4rem; }
-.taxis .ttrack { height: 1.1rem; }
+.taxis { margin-bottom: .4rem; align-items: end; }
+.taxis .ttrack { height: 2.1rem; }
 .tick {
   position: absolute;
+  bottom: 0;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
   font-family: var(--mono);
   font-size: .7rem;
+  line-height: 1.1;
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
+.tick.is-first { transform: translateX(-20%); }
+.tick.is-last { transform: translateX(-80%); }
+.tick b { font-weight: 600; }
+.tick i { font-style: normal; font-size: .62rem; opacity: .8; }
 .tbody { display: flex; flex-direction: column; gap: .4rem; }
 .trow { min-height: 1.6rem; }
 .trow.is-past { opacity: .45; }
 .tlabel {
+  display: flex;
+  flex-direction: column;
+  gap: .05rem;
+  min-width: 0;
+}
+.tname {
   font-size: .82rem;
   color: var(--ink);
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tdate {
+  font-family: var(--mono);
+  font-size: .63rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .ttrack {
@@ -353,10 +377,20 @@ main { padding-block: 1.4rem 2.5rem; display: block; }
   padding: .6rem .8rem;
   font-size: .9rem;
 }
-.mile b { font-family: var(--mono); font-size: .78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.mile b {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.mile-d { font-size: .82rem; color: var(--ink); }
+.mile-w { font-size: .68rem; color: var(--ink-3); font-weight: 400; }
+.mile.is-now .mile-d { color: var(--warm); }
 .mile.is-past { opacity: .5; }
 .mile.is-now { border-color: var(--warm); background: var(--warm-sf); }
-.mile.is-now b { color: var(--warm); }
+.mile.is-now .mile-w { color: var(--warm); }
 
 /* ───────── bottom tabs ───────── */
 .tabs {

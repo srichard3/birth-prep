@@ -28,7 +28,7 @@ const ICONS = {
   /* start here */
   star: '<path d="m12 3.8 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.9l5.8-.8Z"/>',
 
-  /* in labour */
+  /* in labor */
   heart: '<path d="M12 20.3s-7.2-4.5-7.2-9.5A4.3 4.3 0 0 1 12 8a4.3 4.3 0 0 1 7.2 2.8c0 5-7.2 9.5-7.2 9.5Z"/>',
 
   /* antenatal positioning */

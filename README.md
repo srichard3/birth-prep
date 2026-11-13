@@ -62,6 +62,6 @@ with a fresh script — which renders the page wrong rather than merely stale.
 
 ## A note on the content
 
-The guidance here is summarised from Cochrane reviews, ACOG Committee Opinion 804, and
+The guidance here is summarized from Cochrane reviews, ACOG Committee Opinion 804, and
 the trials cited inline. It is consumer research, not medical advice, and the dosing
 decisions belong to an OB or midwife.

@@ -15,8 +15,8 @@ const HABITS = [
     note: 'Strengthening sets' },
   { id: 'pfRelax',  icon: 'waves',    name: 'Pelvic floor',     target: 4, from: 32, to: 41,
     note: 'Release work — reverse Kegels, lengthening' },
-  { id: 'breath',   icon: 'wind',     name: 'Breathing',        target: 7, from: 0,  to: 41,
-    note: '5–10 min diaphragmatic' },
+  { id: 'breath',   icon: 'wind',     name: 'Breathing',        target: 5, from: 0,  to: 41,
+    note: '5 min diaphragmatic' },
   { id: 'perineal', icon: 'droplet',  name: 'Perineal massage', target: 5, from: 34, to: 41,
     note: '3–5 min' }
 ];
@@ -27,7 +27,7 @@ const MILESTONES = [
   { week: 32, icon: 'waves', text: 'Shift the pelvic floor work from building to releasing.' },
   { week: 34, icon: 'droplet', text: 'Start perineal massage, 3–7×/week.' },
   { week: 36, icon: 'person', text: 'If the baby is breech, ask about ECV. Time-sensitive.' },
-  { week: 40, icon: 'heart', text: 'In labour: stay upright and keep moving. The strongest evidence of anything here.' }
+  { week: 40, icon: 'heart', text: 'In labor: stay upright and keep moving. The strongest evidence of anything here.' }
 ];
 
 /* Bars and markers for the timeline view. */
@@ -52,7 +52,7 @@ const SECTIONS = [
     title: 'Start here',
     teaser: 'The one thing that beats everything else',
     body: `
-Above all else, **continuous labour support cut caesarean rates (RR 0.78)** across 27 trials and roughly 16,000 women, and the effect was largest when the support came from a **doula** rather than hospital staff or family. If a doula is an option, booking one does more than anything else on this list.
+Above all else, **continuous labor support cut cesarean rates (RR 0.78)** across 27 trials and roughly 16,000 women, and the effect was largest when the support came from a **doula** rather than hospital staff or family. If a doula is an option, booking one does more than anything else on this list.
 
 Nothing here needs to be perfect. The aerobic minutes and the perineal massage are the two with the best evidence behind them; everything else is worth doing but won't make or break anything.
 `
@@ -71,7 +71,7 @@ Shorter labor, lower risk of C-section, diabetes, preeclampsia.
 
 The practical version: **she can talk in full sentences, but couldn't comfortably sing.** If she can sing, go harder. If she can only manage a few words, ease off.
 
-**Borg RPE scale** — ACOG specifies to aim for a **13–14 out of 20**, labelled "somewhat hard." On that scale 6 is sitting still, 11 is light, 13 is somewhat hard, 15 is hard, 20 is maximal.
+**Borg RPE scale** — ACOG specifies to aim for a **13–14 out of 20**, labeled "somewhat hard." On that scale 6 is sitting still, 11 is light, 13 is somewhat hard, 15 is hard, 20 is maximal.
 
 Concretely: breathing noticeably heavier, maybe lightly sweating, but sustainable for 30 minutes and able to hold a conversation.
 
@@ -166,7 +166,7 @@ Muscle training for incontinence and recovery. Kegels, but also train a slow rel
 Taken from the regimens used in the Cochrane trials:
 
 | Long holds | **3 sets of 8–12** near-maximal contractions, **6–8 second holds**, equal rest |
-| Quick flicks | **10 × 1-second** contractions — trains the fast fibres used for a cough or sneeze |
+| Quick flicks | **10 × 1-second** contractions — trains the fast fibers used for a cough or sneeze |
 | Frequency | **3–4×/week** minimum; daily is fine |
 | Duration | **12–16 weeks** before expecting effect |
 
@@ -214,13 +214,74 @@ If her partner does it, index fingers work better than thumbs for the angle. It 
 `
   },
   {
-    id: 'labour',
+    id: 'breathwork',
+    icon: 'wind',
+    title: 'Breathwork',
+    teaser: "Don't hold your breath when you push",
+    body: `
+When it's time to push, keep making sound. Don't hold your breath. The sound itself isn't doing anything — it's a signal that your throat is open rather than clamped shut while you bear down.
+
+### The plan
+
+**Now → 32 weeks — diaphragmatic breathing, most days**
+
+Slow in through the nose, longer out. Ribs widening sideways rather than the belly pushing forward. Five minutes is enough.
+
+*Why:* this isn't training your lungs. It's making the pattern familiar now so you can use it for the pelvic floor work that starts at 32 weeks.
+
+**From 32 weeks — long exhale paired with pelvic floor release**
+
+On the out-breath, let the pelvic floor soften and widen. This is the opposite of a Kegel.
+
+*Why:* most people can't relax the pelvic floor by deciding to. The diaphragm and pelvic floor move together, so a long exhale lowers resting tension there indirectly.
+
+**From 34 weeks — same breath during perineal massage**
+
+*Why:* both are working on the same tissue tension.
+
+**Any lifting — breathe out as you lift**
+
+*Why:* holding your breath against a closed throat raises pressure downward onto the pelvic floor, which is already under more load than usual.
+
+### During labor
+
+**First stage (contractions)**
+
+Breathe slowly, with the out-breath longer than the in-breath. No specific pattern has outperformed another in trials, so pick what feels manageable. Women consistently report that screaming makes things worse — they describe it as coming from fear, or increasing it.
+
+**Second stage (pushing)**
+
+Keep making sound and follow the urge to push. Low sounds are fine if they come, but don't try to control the pitch — it rises as contractions intensify, which is normal. Staff may coach you to hold your breath and push; this is standard practice because it creates pressure and can speed up labor. However, it is much better to breathe out during pushing unless there are reasons to hurry.
+
+### Why the pushing advice is the part with evidence behind it
+
+The rest of the plan rests on anatomy and reasoning. This part has trials.
+
+In 166 first-time mothers without an epidural, controlled open-mouth exhaling was compared with breath-holding: **41% had an intact perineum versus 19%.** That's about one additional intact perineum for every five women using it. The trial was single-center and unblinded, so the true effect is probably smaller.
+
+In the largest trial (250 women, nearly all with epidurals), there was no difference — consistent with a technique that depends on feeling the contractions.
+
+### Safety
+
+Tingling in your hands or lips, or feeling light-headed, means you're breathing too fast. Slow down and lengthen the out-breath.
+
+This is the reason to avoid the rapid "hee-hee-hoo" patterns from older Lamaze material.
+
+### Not worth your time
+
+- Claims that breathing shortens labor. This traces to one meta-analysis that averaged together trials of breath-*holding* and trials of slow breathing, which are opposite techniques.
+- "Relaxed jaw, relaxed cervix." Useful as a reminder to check for clenching. It has never been tested, and the cervix is not a sphincter.
+- Any method that assigns specific tones to specific anatomy.
+`
+  },
+  {
+    id: 'labor',
     icon: 'heart',
-    title: 'In labour',
+    title: 'In labor',
     teaser: 'Where the evidence actually is',
     body: `
 ### First stage of labor
-| 🟢🟢 Stay upright and keep moving | 1h22m shorter, **caesarean RR 0.71**, epidural RR 0.81 |
+| 🟢🟢 Stay upright and keep moving | 1h22m shorter, **cesarean RR 0.71**, epidural RR 0.81 |
 | 🟢 Water immersion | Epidural/spinal RR 0.90; shortens first stage; no adverse effect on operative delivery or neonatal wellbeing |
 | 🟡 Hands and knees | **Significantly reduces back pain** (147 women). This is its real job |
 | 🟡 Counter-pressure / hip squeeze | Standard doula technique for back labor. Comfort |
